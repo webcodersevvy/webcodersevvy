@@ -1,0 +1,124 @@
+---
+const nav = [
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/process", label: "Process" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<footer class="foot rule-top">
+  <div class="wrap">
+    <p class="word font-display" aria-label="webcodersevvy">webcodersevvy<span class="dot" aria-hidden="true"></span></p>
+    <div class="cols">
+      <nav aria-label="Footer">
+        <p class="meta h">Sitemap</p>
+        <ul>
+          <li><a href="/">Home</a></li>
+          {nav.map((l) => (
+            <li><a href={l.href}>{l.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <div>
+        <p class="meta h">Elsewhere</p>
+        <ul>
+          <li><span class="meta">[Placeholder — GitHub]</span></li>
+          <li><span class="meta">[Placeholder — LinkedIn]</span></li>
+          <li><span class="meta">[Placeholder — X]</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="meta h">Contact</p>
+        <ul>
+          <li><span class="meta">[Placeholder — email]</span></li>
+          <li><span class="meta">[Placeholder — location]</span></li>
+          <li><span class="meta">[Placeholder — availability]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p class="meta">© 2026 webcodersevvy — Sewak Singh</p>
+      <p class="meta">[Placeholder — legal note]</p>
+      <a class="meta top" href="#main">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    padding-block: var(--s-12) var(--s-8);
+  }
+
+  .word {
+    font-size: clamp(2.5rem, 9vw, 7.5rem);
+    text-transform: lowercase;
+    margin: 0 0 var(--s-8);
+    line-height: 0.95;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 0.12em;
+    height: 0.12em;
+    min-width: 8px;
+    min-height: 8px;
+    background: var(--accent);
+    margin-left: 0.06em;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-8);
+  }
+
+  .h {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-3);
+  }
+
+  .cols ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .cols nav a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .cols span {
+    color: var(--ink-60);
+  }
+
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-6);
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--s-12);
+    padding-top: var(--s-4);
+    border-top: var(--rule);
+  }
+
+  .legal p {
+    margin: 0;
+    color: var(--ink-60);
+  }
+
+  .top {
+    text-decoration: none;
+  }
+
+  @media (min-width: 900px) {
+    .cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

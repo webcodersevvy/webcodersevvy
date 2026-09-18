@@ -1,0 +1,112 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="section rule-top" aria-labelledby="about-heading">
+  <div class="wrap">
+    <SectionHeading
+      index="05"
+      label="About"
+      title="Designer who ships code"
+      headingId="about-heading"
+    />
+    <div class="grid">
+      <div class="portrait" role="img" aria-label="[Placeholder — portrait of Sevvy]">
+        <span class="meta">[Placeholder — portrait]</span>
+      </div>
+      <div class="bio">
+        <p class="lead">
+          I’m Sevvy (Sewak Singh) — a freelance web designer and developer
+          specializing in commerce. [Placeholder — one-line positioning.]
+        </p>
+        <p>
+          [Placeholder — background paragraph: experience, focus areas, how you
+          work with founders, merchants, and agencies.]
+        </p>
+        <dl class="facts">
+          <div>
+            <dt class="meta">Name</dt>
+            <dd>Sewak Singh — “Sevvy”</dd>
+          </div>
+          <div>
+            <dt class="meta">Based</dt>
+            <dd>[Placeholder — location + timezone]</dd>
+          </div>
+          <div>
+            <dt class="meta">Focus</dt>
+            <dd>Shopify · Headless · Frontend</dd>
+          </div>
+          <div>
+            <dt class="meta">Elsewhere</dt>
+            <dd>[Placeholder — GitHub / LinkedIn / X]</dd>
+          </div>
+        </dl>
+        <p class="more"><a class="btn btn-ghost" href="/about">More about me <span aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-8);
+  }
+
+  .portrait {
+    aspect-ratio: 4 / 5;
+    border: 1px dashed var(--line-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-60);
+    max-width: 420px;
+  }
+
+  .lead {
+    font-size: var(--lead);
+    line-height: 1.5;
+    margin: 0 0 var(--s-4);
+  }
+
+  .bio p:not(.lead):not(.more) {
+    color: var(--ink-60);
+    max-width: 62ch;
+    margin: 0 0 var(--s-4);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4);
+    margin: var(--s-6) 0 0;
+    padding-top: var(--s-6);
+    border-top: var(--rule);
+  }
+
+  .facts div {
+    margin: 0;
+  }
+
+  .facts dt {
+    color: var(--accent-strong);
+    margin-bottom: var(--s-1);
+  }
+
+  .facts dd {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .more {
+    margin: var(--s-8) 0 0;
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: 340px 1fr;
+      gap: var(--s-12);
+    }
+  }
+</style>

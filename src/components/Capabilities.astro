@@ -1,0 +1,112 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+const rows = [
+  { area: "Commerce", detail: "Shopify OS 2.0 · Liquid · Schemas · Checkout extensibility basics", tags: ["Shopify"] },
+  { area: "Headless", detail: "Storefront APIs · Content modeling · Static + island rendering", tags: ["APIs", "Astro"] },
+  { area: "Frontend", detail: "TypeScript · Solid.js · Semantic HTML · Vanilla CSS + tokens", tags: ["TS", "Solid"] },
+  { area: "Interaction", detail: "GSAP · Motion · Lenis smooth scroll · Scroll reveals (gated)", tags: ["GSAP", "Motion"] },
+  { area: "Data & State", detail: "Zod validation · Nanostores · Markdown content collections", tags: ["Zod"] },
+  { area: "Quality", detail: "WCAG 2.2 AA habits · SEO metadata + structured data · CWV budgets", tags: ["A11y", "SEO"] },
+];
+---
+
+<section class="section rule-top" aria-labelledby="cap-heading">
+  <div class="wrap">
+    <SectionHeading
+      index="03"
+      label="Technical Capabilities"
+      title="Depth behind the design"
+      headingId="cap-heading"
+      blurb="The engineering layer that keeps projects fast, accessible, and maintainable after handoff."
+    />
+    <dl class="grid" data-reveal-group>
+      {rows.map((r, i) => (
+        <div class="cell">
+          <dt class="meta"><span class="idx" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span> {r.area}</dt>
+          <dd>{r.detail}</dd>
+          <dd class="tags">{r.tags.map((t) => <span class="tag">{t}</span>)}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
+    border-top: 2px solid var(--ink);
+  }
+
+  .cell {
+    padding: var(--s-6) 0;
+    border-bottom: var(--rule);
+    margin: 0;
+  }
+
+  .idx {
+    color: var(--accent-strong);
+  }
+
+  .cell dt {
+    margin-bottom: var(--s-2);
+  }
+
+  .cell dd {
+    margin: 0;
+    max-width: 56ch;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-top: var(--s-3);
+  }
+
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cell {
+      padding: var(--s-6) var(--s-6) var(--s-6) 0;
+    }
+
+    .cell:nth-child(odd) {
+      border-right: var(--rule);
+      padding-right: var(--s-8);
+    }
+
+    .cell:nth-child(even) {
+      padding-left: var(--s-8);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cell:nth-child(odd) {
+      border-right: none;
+      padding-right: var(--s-6);
+    }
+
+    .cell:nth-child(even) {
+      padding-left: 0;
+    }
+
+    .cell:not(:nth-child(3n)) {
+      border-right: var(--rule);
+      padding-right: var(--s-8);
+    }
+
+    .cell:nth-child(3n + 2),
+    .cell:nth-child(3n) {
+      padding-left: var(--s-8);
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+/* webcodersevvy — design tokens (Phase 1)
+   Monochrome editorial / architectural / typography-driven.
+   Accent locked per user: #FF0000 (selective use only). */
+
+:root {
+  --bg: #f4f4f4;
+  --ink: #000000;
+  --ink-60: rgba(0, 0, 0, 0.6);
+  --ink-40: rgba(0, 0, 0, 0.4);
+  --line: rgba(0, 0, 0, 0.14);
+  --line-strong: rgba(0, 0, 0, 0.32);
+  --accent: #ff0000;
+  --accent-ink: #ffffff;
+  /* Functional derivative for small text + interactive backgrounds.
+     Pure #FF0000 on paper = 3.6:1 (large/graphic only). #B30000 = 6.5:1 on
+     paper, 7.2:1 under white — WCAG AA for body text. Brand moments
+     (logo dot, display ampersands, arrows, focus ring) stay pure red. */
+  --accent-strong: #b30000;
+
+  /* Typography — --font-display is owned by Astro's Fonts API
+     (Melodrama via Fontshare, see astro.config.mjs + <Font> in BaseLayout).
+     Do NOT redefine it here; var(--font-display) resolves to Astro's
+     family + optimized fallbacks. */
+  --font-body: "Mona Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Type scale (fluid) */
+  --h-display: clamp(3rem, 9vw, 9rem);
+  --h-1: clamp(2.25rem, 5vw, 4.5rem);
+  --h-2: clamp(1.5rem, 3vw, 2.5rem);
+  --lead: clamp(1.125rem, 1.6vw, 1.375rem);
+  --body: 1rem;
+  --meta: 0.75rem;
+
+  /* Spacing (4px base) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-24: 6rem;
+
+  /* Layout */
+  --grid-max: 1440px;
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --rule: 1px solid var(--line);
+
+  /* Focus */
+  --focus-ring: 2px solid var(--accent);
+  --focus-offset: 3px;
+
+  /* Motion (gated by prefers-reduced-motion in global.css) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-1: 160ms;
+  --dur-2: 320ms;
+  --dur-3: 640ms;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: clamp(1.5rem, 4vw, 3rem);
+  }
+}

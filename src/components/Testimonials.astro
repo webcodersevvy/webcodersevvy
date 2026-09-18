@@ -1,0 +1,76 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+const items = [
+  { quote: "[Placeholder — client testimonial. Added only from real engagements.]", name: "[Placeholder client]", role: "[Placeholder role]" },
+  { quote: "[Placeholder — client testimonial. Added only from real engagements.]", name: "[Placeholder client]", role: "[Placeholder role]" },
+  { quote: "[Placeholder — client testimonial. Added only from real engagements.]", name: "[Placeholder client]", role: "[Placeholder role]" },
+];
+---
+
+<section class="section rule-top" aria-labelledby="quotes-heading">
+  <div class="wrap">
+    <SectionHeading
+      index="06"
+      label="Testimonials"
+      title="In clients' words"
+      headingId="quotes-heading"
+      blurb="No invented praise. This wall fills with verified feedback as engagements complete."
+    />
+    <ul class="cards" data-reveal-group>
+      {items.map((t) => (
+        <li class="card">
+          <p class="ph meta" aria-hidden="true">Placeholder</p>
+          <blockquote>
+            <p class="q">{t.quote}</p>
+            <footer class="meta">{t.name} — {t.role}</footer>
+          </blockquote>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  .card {
+    border: 1px dashed var(--line-strong);
+    padding: var(--s-6);
+  }
+
+  .ph {
+    display: inline-block;
+    color: var(--accent-strong);
+    border: 1px solid var(--accent-strong);
+    padding: 0.1rem 0.6rem;
+    margin: 0 0 var(--s-4);
+  }
+
+  .card blockquote {
+    margin: 0;
+  }
+
+  .q {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    margin: 0 0 var(--s-4);
+  }
+
+  .card footer {
+    color: var(--ink-60);
+  }
+
+  @media (min-width: 900px) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import PageHeader from "../components/PageHeader.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+
+const principles = [
+  { title: "Precision", desc: "Tokens, type scales, and spacing systems — nothing eyeballed, everything specified." },
+  { title: "Craftsmanship", desc: "The last 5% is the work: focus states, empty states, loading states, edge cases." },
+  { title: "Technical depth", desc: "Design decisions backed by engineering judgment — performance and accessibility are inputs, not QA." },
+  { title: "Reliability", desc: "Scoped in writing, staged previews, documented handoff. Boring in the best way." },
+];
+---
+
+<BaseLayout
+  title="About — Sevvy · webcodersevvy"
+  description="Sevvy (Sewak Singh) — freelance web designer and developer specializing in Shopify, headless commerce, and frontend development."
+  canonicalPath="/about"
+>
+  <SiteNav />
+  <main id="main">
+    <PageHeader
+      eyebrow="About"
+      title="Designer who ships code"
+      lead="I’m Sevvy (Sewak Singh) — a freelance web designer and developer working at the intersection of commerce, typography, and engineering."
+    />
+    <div class="wrap grid">
+      <div class="portrait" role="img" aria-label="[Placeholder — portrait of Sevvy]">
+        <span class="meta">[Placeholder — portrait]</span>
+      </div>
+      <div class="bio">
+        <p>[Placeholder — background paragraph: how you started, what you focus on, who you work with.]</p>
+        <p>[Placeholder — working-style paragraph: communication, process, what clients can expect week to week.]</p>
+        <dl class="facts">
+          <div><dt class="meta">Name</dt><dd>Sewak Singh — “Sevvy”</dd></div>
+          <div><dt class="meta">Brand</dt><dd>webcodersevvy</dd></div>
+          <div><dt class="meta">Based</dt><dd>[Placeholder — location + timezone]</dd></div>
+          <div><dt class="meta">Focus</dt><dd>Shopify · Headless · Frontend</dd></div>
+          <div><dt class="meta">Clients</dt><dd>Brands · Merchants · Agencies</dd></div>
+          <div><dt class="meta">Elsewhere</dt><dd>[Placeholder — GitHub / LinkedIn / X]</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <section class="wrap prin" aria-labelledby="prin-h">
+      <h2 id="prin-h" class="pt">Operating principles</h2>
+      <ol>
+        {principles.map((p, i) => (
+          <li>
+            <p class="meta n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</p>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="meta note">[Placeholder — credentials, if any, appear here only when verifiable. Nothing invented.]</p>
+    </section>
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-8);
+    padding-bottom: var(--s-12);
+  }
+
+  .portrait {
+    aspect-ratio: 4 / 5;
+    border: 1px dashed var(--line-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-60);
+    max-width: 420px;
+  }
+
+  .bio p {
+    max-width: 62ch;
+    color: var(--ink-60);
+    margin: 0 0 var(--s-4);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4);
+    margin: var(--s-6) 0 0;
+    padding-top: var(--s-6);
+    border-top: var(--rule);
+  }
+
+  .facts div {
+    margin: 0;
+  }
+
+  .facts dt {
+    color: var(--accent-strong);
+    margin-bottom: var(--s-1);
+  }
+
+  .facts dd {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .prin {
+    padding-bottom: var(--s-16);
+  }
+
+  .pt {
+    font-family: var(--font-display);
+    font-size: var(--h-2);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0 0 var(--s-6);
+  }
+
+  .prin ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  .prin li {
+    border-top: 2px solid var(--ink);
+    padding-top: var(--s-4);
+  }
+
+  .n {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-2);
+  }
+
+  .prin h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0 0 var(--s-2);
+  }
+
+  .prin li p:last-child {
+    margin: 0;
+    color: var(--ink-60);
+  }
+
+  .note {
+    margin: var(--s-8) 0 0;
+    color: var(--ink-60);
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: 340px 1fr;
+      gap: var(--s-12);
+    }
+
+    .prin ol {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-8);
+    }
+  }
+</style>

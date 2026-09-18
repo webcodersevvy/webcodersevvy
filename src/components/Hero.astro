@@ -1,0 +1,120 @@
+---
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="wrap">
+    <p class="meta eyebrow" data-hero>Sewak Singh — “Sevvy” · Freelance web designer <span aria-hidden="true">&</span> developer</p>
+    <h1 id="hero-heading" class="font-display h1" data-hero>
+      Shopify <span class="rd" aria-hidden="true">&</span><span class="sr-only">&amp;</span> headless
+      commerce, designed
+      <span class="rd" aria-hidden="true">+</span><span class="sr-only">and</span> engineered.
+    </h1>
+    <p class="lead" data-hero>
+      I design and build fast, precise storefronts — Shopify theme development,
+      headless commerce, Webflow, Framer, and performance optimization — for
+      brands, merchants, and agencies that care about craft.
+    </p>
+    <div class="ctas" data-hero>
+      <a class="btn" href="/contact">Start a project <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="/work">View selected work</a>
+    </div>
+    <dl class="spec" data-hero>
+      <div>
+        <dt>Focus</dt>
+        <dd>Shopify / Headless / Frontend</dd>
+      </div>
+      <div>
+        <dt>Services</dt>
+        <dd>Design + Build + Optimize</dd>
+      </div>
+      <div>
+        <dt>Clients</dt>
+        <dd>Brands · Agencies · White-label</dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd>[Placeholder — availability]</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--s-16) var(--s-12);
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--s-6);
+    max-width: 70ch;
+  }
+
+  .h1 {
+    font-size: var(--h-display);
+    margin: 0;
+    max-width: 12ch;
+  }
+
+  .rd {
+    color: var(--accent);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .lead {
+    font-size: var(--lead);
+    line-height: 1.5;
+    max-width: 58ch;
+    margin: var(--s-8) 0 0;
+    color: var(--ink-60);
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-8);
+  }
+
+  .spec {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4);
+    margin: var(--s-12) 0 0;
+    padding: var(--s-6) 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: var(--rule);
+  }
+
+  .spec div {
+    margin: 0;
+  }
+
+  .spec dt {
+    font-family: var(--font-mono);
+    font-size: var(--meta);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-strong);
+    margin-bottom: var(--s-1);
+  }
+
+  .spec dd {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 900px) {
+    .spec {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

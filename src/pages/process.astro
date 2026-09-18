@@ -1,0 +1,197 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import PageHeader from "../components/PageHeader.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+
+const stages = [
+  {
+    n: "01",
+    title: "Discover",
+    desc: "[Placeholder] A working session and a written brief: goals, constraints, stack, content, and what success looks like.",
+    inputs: ["Your goals and constraints", "Access to store, analytics, brand assets", "One decision-maker on your side"],
+    outputs: ["Written scope with fixed price", "Sitemap and content inventory", "Timeline with milestones"],
+  },
+  {
+    n: "02",
+    title: "Design",
+    desc: "[Placeholder] Typography-led layouts and design tokens first, then pages. You review structure before surface polish.",
+    inputs: ["Brand assets and content drafts", "Feedback within agreed rounds", "Real copy where possible"],
+    outputs: ["Layout system and type scale", "Key page designs", "Clickable prototype for review"],
+  },
+  {
+    n: "03",
+    title: "Build",
+    desc: "[Placeholder] Accessible, typed, performant implementation with staged previews you can click through.",
+    inputs: ["Final content and imagery", "App and integration credentials", "Staging feedback"],
+    outputs: ["Working build on staging", "QA checklist incl. keyboard + mobile", "Performance checkpoint"],
+  },
+  {
+    n: "04",
+    title: "Launch & Measure",
+    desc: "[Placeholder] Release checklist, analytics hooks, and handoff docs. Outcomes reported only where verified.",
+    inputs: ["Launch window and DNS access", "Success metrics to track", "Support contact"],
+    outputs: ["Launch checklist sign-off", "Handoff docs + editor guide", "Verified outcomes report"],
+  },
+];
+
+const faqs = [
+  {
+    q: "What do you need from me to start?",
+    a: "[Placeholder] Access, assets, content, and one decision-maker. The Discover stage lists everything in writing.",
+  },
+  {
+    q: "How long does a typical project take?",
+    a: "[Placeholder — typical ranges per project type. No invented guarantees.]",
+  },
+  {
+    q: "How many revision rounds are included?",
+    a: "[Placeholder — your revision policy, stated plainly.]",
+  },
+  {
+    q: "Do you work white-label with agencies?",
+    a: "Yes — scoped builds inside your process, documented handoff, NDA-friendly. See Services for details.",
+  },
+  {
+    q: "What happens after launch?",
+    a: "[Placeholder — support and iteration terms.]",
+  },
+];
+---
+
+<BaseLayout
+  title="Process — webcodersevvy"
+  description="How Sevvy works: Discover, Design, Build, Launch and Measure. Scoped in writing, staged previews, documented handoff."
+  canonicalPath="/process"
+>
+  <SiteNav />
+  <main id="main">
+    <PageHeader
+      eyebrow="Process"
+      title="A calm way to ship"
+      lead="Four stages, no theatre. You always know what happens next, what I need from you, and what you get."
+    />
+    <div class="wrap">
+      {stages.map((s) => (
+        <section class="stage rule-top" aria-label={`Stage ${s.n}: ${s.title}`}>
+          <p class="meta n" aria-hidden="true">{s.n}</p>
+          <h2 class="t">{s.title}</h2>
+          <p class="d">{s.desc}</p>
+          <div class="io">
+            <div>
+              <p class="meta h">What I need</p>
+              <ul>{s.inputs.map((x) => <li>{x}</li>)}</ul>
+            </div>
+            <div>
+              <p class="meta h">What you get</p>
+              <ul>{s.outputs.map((x) => <li>{x}</li>)}</ul>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <section class="faq" aria-labelledby="faq-h">
+        <h2 id="faq-h" class="ft">Questions, answered</h2>
+        {faqs.map((f) => (
+          <details class="qa">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+    </div>
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .stage {
+    padding: var(--s-8) 0;
+  }
+
+  .n {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-2);
+  }
+
+  .t {
+    font-family: var(--font-display);
+    font-size: var(--h-2);
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 0.98;
+    margin: 0 0 var(--s-3);
+  }
+
+  .d {
+    font-size: var(--lead);
+    color: var(--ink-60);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .io {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+    margin-top: var(--s-6);
+  }
+
+  .h {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-3);
+  }
+
+  .io ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--s-2);
+    max-width: 52ch;
+  }
+
+  .faq {
+    padding: var(--s-12) 0 var(--s-16);
+  }
+
+  .ft {
+    font-family: var(--font-display);
+    font-size: var(--h-2);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0 0 var(--s-6);
+  }
+
+  .qa {
+    border-top: var(--rule);
+    padding: var(--s-4) 0;
+  }
+
+  .qa:last-of-type {
+    border-bottom: var(--rule);
+  }
+
+  .qa summary {
+    font-weight: 600;
+    cursor: pointer;
+    list-style-position: outside;
+  }
+
+  .qa summary:hover {
+    color: var(--accent-strong);
+  }
+
+  .qa p {
+    margin: var(--s-3) 0 0;
+    color: var(--ink-60);
+    max-width: 64ch;
+  }
+
+  @media (min-width: 768px) {
+    .io {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

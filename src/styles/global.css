@@ -1,0 +1,191 @@
+@import "./tokens.css";
+@import "@fontsource/mona-sans/400.css";
+@import "@fontsource/mona-sans/500.css";
+@import "@fontsource/mona-sans/600.css";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
+
+/* NOTE: display type (Melodrama) is served self-hosted via Astro's Fonts API
+   (see astro.config.mjs + <Font> in BaseLayout). Mona Sans + Space Mono
+   below come from Fontsource (also self-hosted, font-display: swap). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+/* Visible focus — WCAG 2.2 AA */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 1px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 100;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: var(--meta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--s-2) var(--s-4);
+  text-decoration: none;
+  transition: top var(--dur-1) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--s-3);
+  color: #fff;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--meta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: var(--grid-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.rule-top {
+  border-top: var(--rule);
+}
+
+/* Motion initial states — applied ONLY when JS enhancement runs (html.fx).
+   No-JS and reduced-motion users always see full content. */
+html.fx [data-hero],
+html.fx [data-reveal],
+html.fx [data-reveal-group] > * {
+  opacity: 0;
+}
+
+/* Section rhythm */
+.section {
+  padding-block: var(--s-16);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-block: var(--s-24);
+  }
+}
+
+/* Buttons — rectangular, architectural, no rounding */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--ink);
+  padding: 0.8rem 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+/* Tag pills (mono metadata) */
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* Reduced motion — kills smooth scroll + all animation (priority over UX flair) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,325 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import CTA from "../../components/CTA.astro";
+import Footer from "../../components/Footer.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+type WorkEntry = CollectionEntry<"work">;
+
+export async function getStaticPaths() {
+  const items: WorkEntry[] = await getCollection("work", (entry: WorkEntry) => entry.data.status === "published");
+  return items.map((entry: WorkEntry) => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, "") },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: WorkEntry };
+const { Content } = await render(entry);
+const slug = (entry as WorkEntry).id.replace(/\.mdx?$/, "");
+const d = entry.data;
+
+const all: WorkEntry[] = await getCollection("work", (e: WorkEntry) => e.data.status === "published");
+const at = all.findIndex((e) => e.id === entry.id);
+const prev = at > 0 ? all[at - 1] : undefined;
+const next = at >= 0 && at < all.length - 1 ? all[at + 1] : undefined;
+const slugOf = (e: WorkEntry) => e.id.replace(/\.mdx?$/, "");
+
+// TODO(domain): URL is a placeholder until the domain is purchased.
+const SITE = "https://webcodersevvy.com";
+const pageUrl = `${SITE}/work/${slug}/`;
+const structured = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: d.title,
+    description: d.description,
+    url: pageUrl,
+    datePublished: d.year,
+    author: { "@type": "Person", name: "Sewak Singh", alternateName: "Sevvy" },
+    about: d.stack,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE}/work/` },
+      { "@type": "ListItem", position: 3, name: d.title, item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={`${d.title} — webcodersevvy`} description={d.description} canonicalPath={`/work/${slug}`}>
+  <JsonLd data={structured} />
+  <SiteNav />
+  <main id="main">
+    <article>
+      <div class="wrap chead">
+        <nav class="meta crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true"> / </span>
+          <a href="/work">Work</a><span aria-hidden="true"> / </span>
+          <span aria-current="page">{d.title}</span>
+        </nav>
+        <p class="meta eyebrow">{d.client} — {d.projectType} — {d.year}</p>
+        <h1 id="page-title" class="font-display h">{d.title}</h1>
+        <p class="lead">{d.description}</p>
+        <dl class="meta-grid">
+          <div><dt class="meta">Client</dt><dd>{d.client}</dd></div>
+          <div><dt class="meta">Type</dt><dd>{d.projectType}</dd></div>
+          <div><dt class="meta">Role</dt><dd>{d.role}</dd></div>
+          <div><dt class="meta">Year</dt><dd>{d.year}</dd></div>
+          <div><dt class="meta">Services</dt><dd>{d.services.join(" · ")}</dd></div>
+          <div><dt class="meta">Stack</dt><dd class="tags">{d.stack.map((t: string) => <span class="tag">{t}</span>)}</dd></div>
+        </dl>
+        {d.deliverables.length > 0 && (
+          <div class="deliv">
+            <p class="meta">Deliverables</p>
+            <ul>
+              {d.deliverables.map((x: string) => <li>{x}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <div class="wrap prose">
+        <Content />
+      </div>
+
+      <div class="wrap evidence">
+        <h2 class="meta ehead">Visual evidence</h2>
+        {d.evidence.map((item: { image: string; alt: string; caption: string }) => (
+          <figure class="ev">
+            <img src={`/${item.image}`} alt={item.alt} loading="lazy" decoding="async" />
+            <figcaption class="meta">{item.caption}</figcaption>
+          </figure>
+        ))}
+        {d.evidence.length === 0 && (
+          <div class="ebox" role="img" aria-label="[Placeholder — visual evidence]">
+            <span class="meta">[Placeholder — visual evidence]</span>
+          </div>
+        )}
+      </div>
+
+      <nav class="wrap prevnext" aria-label="More work">
+        {prev ? (
+          <a class="pn" href={`/work/${slugOf(prev)}`} rel="prev">
+            <span class="meta">← Previous</span>
+            <span class="pnt">{prev.data.title}</span>
+          </a>
+        ) : <span />}
+        {next ? (
+          <a class="pn right" href={`/work/${slugOf(next)}`} rel="next">
+            <span class="meta">Next →</span>
+            <span class="pnt">{next.data.title}</span>
+          </a>
+        ) : <span />}
+      </nav>
+    </article>
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .chead {
+    padding-top: var(--s-12);
+    padding-bottom: var(--s-8);
+  }
+
+  .crumbs {
+    margin: 0 0 var(--s-6);
+    color: var(--ink-60);
+  }
+
+  .crumbs a {
+    text-decoration: none;
+  }
+
+  .crumbs [aria-current] {
+    color: var(--ink);
+  }
+
+  .eyebrow {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-4);
+  }
+
+  .h {
+    font-size: var(--h-1);
+    margin: 0;
+    max-width: 16ch;
+  }
+
+  .lead {
+    font-size: var(--lead);
+    color: var(--ink-60);
+    max-width: 62ch;
+    margin: var(--s-6) 0 0;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4);
+    margin: var(--s-8) 0 0;
+    padding: var(--s-6) 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: var(--rule);
+  }
+
+  .meta-grid div {
+    margin: 0;
+  }
+
+  .meta-grid dt {
+    color: var(--accent-strong);
+    margin-bottom: var(--s-1);
+  }
+
+  .meta-grid dd {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  .deliv {
+    margin-top: var(--s-6);
+  }
+
+  .deliv .meta {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-2);
+  }
+
+  .deliv ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--s-1);
+  }
+
+  .evidence {
+    padding-bottom: var(--s-12);
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .ehead {
+    color: var(--accent-strong);
+    margin: 0;
+  }
+
+  .ebox {
+    aspect-ratio: 16 / 9;
+    border: 1px dashed var(--line-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--s-6);
+    color: var(--ink-60);
+  }
+
+  .ev {
+    margin: 0;
+  }
+
+  .ev img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    background: var(--line);
+  }
+
+  .ev figcaption {
+    color: var(--ink-60);
+    padding-top: var(--s-2);
+  }
+
+  .prevnext {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding-bottom: var(--s-16);
+  }
+
+  .pn {
+    text-decoration: none;
+    display: grid;
+    gap: var(--s-1);
+    max-width: 40ch;
+  }
+
+  .pn .meta {
+    color: var(--accent-strong);
+  }
+
+  .pn.right {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .pnt {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+
+  @media (min-width: 900px) {
+    .meta-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .evidence {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ehead {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<style is:global>
+  .prose {
+    padding-bottom: var(--s-12);
+    max-width: calc(var(--grid-max) - 0px);
+  }
+
+  .prose h2 {
+    font-family: var(--font-display);
+    font-size: var(--h-2);
+    line-height: 0.98;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: var(--s-12) 0 var(--s-4);
+    padding-top: var(--s-8);
+    border-top: var(--rule);
+    max-width: 20ch;
+  }
+
+  .prose p,
+  .prose ul,
+  .prose ol {
+    max-width: 68ch;
+  }
+
+  .prose p {
+    margin: 0 0 var(--s-4);
+  }
+
+  .prose li {
+    margin-bottom: var(--s-2);
+  }
+</style>

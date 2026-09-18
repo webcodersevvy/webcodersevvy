@@ -1,0 +1,183 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import PageHeader from "../components/PageHeader.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import { services } from "../data/services";
+
+const engagements = [
+  {
+    title: "Fixed-scope project",
+    desc: "[Placeholder] Defined deliverables, timeline, and price in writing. Best for rebuilds, launches, and audits.",
+  },
+  {
+    title: "Iterative partnership",
+    desc: "[Placeholder] Staged roadmap for stores that evolve — design, build, and optimization in cycles.",
+  },
+  {
+    title: "White-label capacity",
+    desc: "[Placeholder] Senior build capacity inside your agency's process, under NDA when needed.",
+  },
+];
+---
+
+<BaseLayout
+  title="Services — webcodersevvy"
+  description="Shopify theme development, headless commerce, Webflow, Framer, frontend development, performance optimization, and white-label builds by Sevvy."
+  canonicalPath="/services"
+>
+  <SiteNav />
+  <main id="main">
+    <PageHeader
+      eyebrow="Services"
+      title="What I can build for you"
+      lead="Six sharp offers for merchants, brands, and agencies. Every engagement is scoped in writing before work starts."
+    />
+    <div class="wrap">
+      {services.map((s) => (
+        <section class="svc rule-top" aria-labelledby={`svc-${s.slug}`}>
+          <p class="meta n" aria-hidden="true">{s.index}</p>
+          <h2 id={`svc-${s.slug}`} class="t">{s.title}</h2>
+          <p class="d">{s.desc}</p>
+          <div class="cols">
+            <div>
+              <p class="meta h">Deliverables</p>
+              <ul>
+                {s.deliverables.map((x) => <li>{x}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p class="meta h">Best for</p>
+              <p class="best">{s.bestFor}</p>
+              <p class="tags">{s.tags.map((t) => <span class="tag">{t}</span>)}</p>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <section class="enga" aria-labelledby="enga-h">
+        <h2 id="enga-h" class="et">Ways to engage</h2>
+        <ul>
+          {engagements.map((e) => (
+            <li>
+              <h3>{e.title}</h3>
+              <p>{e.desc}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .svc {
+    padding: var(--s-8) 0;
+  }
+
+  .n {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-2);
+  }
+
+  .t {
+    font-family: var(--font-display);
+    font-size: var(--h-2);
+    line-height: 0.98;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0 0 var(--s-3);
+    max-width: 20ch;
+  }
+
+  .d {
+    font-size: var(--lead);
+    color: var(--ink-60);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+    margin-top: var(--s-6);
+  }
+
+  .h {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-3);
+  }
+
+  .cols ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--s-2);
+    max-width: 56ch;
+  }
+
+  .best {
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin: var(--s-4) 0 0;
+  }
+
+  .enga {
+    padding: var(--s-12) 0 var(--s-16);
+  }
+
+  .et {
+    font-family: var(--font-display);
+    font-size: var(--h-2);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0 0 var(--s-6);
+  }
+
+  .enga ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  .enga li {
+    border: var(--rule);
+    padding: var(--s-6);
+  }
+
+  .enga h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0 0 var(--s-2);
+  }
+
+  .enga p {
+    margin: 0;
+    color: var(--ink-60);
+  }
+
+  @media (min-width: 768px) {
+    .cols {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .enga ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

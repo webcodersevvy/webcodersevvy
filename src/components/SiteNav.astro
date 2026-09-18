@@ -1,0 +1,182 @@
+---
+import MobileMenu from "./MobileMenu.tsx";
+
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/process", label: "Process" },
+  { href: "/contact", label: "Contact" },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header class="site-head">
+  <div class="wrap bar">
+    <a class="wordmark" href="/" aria-label="webcodersevvy — home">webcodersevvy<span class="dot" aria-hidden="true"></span></a>
+    <nav class="desk" aria-label="Primary">
+      <ul>
+        {links.map((l) => (
+          <li><a href={l.href} aria-current={current === l.href ? "page" : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+      <a class="btn btn-nav" href="/contact">Start a project</a>
+    </nav>
+    <MobileMenu client:load links={links} current={current} />
+  </div>
+</header>
+
+<style>
+  .site-head {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: var(--rule);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    min-height: 64px;
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    text-transform: lowercase;
+    font-size: 1.35rem;
+    letter-spacing: 0;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .wordmark:hover {
+    color: var(--ink);
+  }
+
+  .dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--accent);
+    margin-left: 0.15rem;
+  }
+
+  .desk {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .desk {
+      display: flex;
+      align-items: center;
+      gap: var(--s-6);
+    }
+
+    .desk ul {
+      display: flex;
+      gap: var(--s-6);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .desk li a {
+      display: inline-block;
+      padding-block: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .desk li a:hover {
+      color: var(--accent-strong);
+    }
+
+    .desk li a[aria-current="page"] {
+      color: var(--accent-strong);
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+    }
+
+    .btn-nav {
+      padding: 0.6rem 1.1rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Solid island: mobile menu (hidden on desktop, shown <900px) */
+  .mmenu {
+    display: block;
+  }
+
+  .mmenu-btn {
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.55rem 1rem;
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  .mmenu-btn:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .mmenu-panel {
+    position: absolute;
+    inset: 100% 0 auto 0;
+    background: var(--ink);
+    color: var(--bg);
+    border-top: 1px solid var(--ink);
+  }
+
+  .mmenu-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--s-4) var(--gutter) var(--s-8);
+    display: grid;
+    gap: 0;
+  }
+
+  .mmenu-panel li {
+    border-bottom: 1px solid rgba(244, 244, 244, 0.18);
+  }
+
+  .mmenu-panel li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--s-4) 0;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--bg);
+  }
+
+  .mmenu-panel li a:hover {
+    color: var(--accent);
+  }
+
+  .mmenu-panel .arr {
+    color: var(--accent);
+  }
+
+  @media (min-width: 900px) {
+    .mmenu {
+      display: none;
+    }
+  }
+</style>

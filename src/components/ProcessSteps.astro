@@ -1,0 +1,83 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+const steps = [
+  { n: "01", title: "Discover", desc: "[Placeholder] Goals, constraints, stack, and success criteria — fixed in writing before design starts." },
+  { n: "02", title: "Design", desc: "[Placeholder] Typography-led layouts, tokens, and prototypes. You review structure before polish." },
+  { n: "03", title: "Build", desc: "[Placeholder] Accessible, typed, performant implementation with staged previews and QA." },
+  { n: "04", title: "Launch & Measure", desc: "[Placeholder] Release checklist, analytics hooks, handoff docs — and verified outcomes only." },
+];
+---
+
+<section class="section rule-top" aria-labelledby="process-heading">
+  <div class="wrap">
+    <SectionHeading
+      index="04"
+      label="Process"
+      title="A calm way to ship"
+      headingId="process-heading"
+      blurb="Four stages, no theatre. You always know what happens next and what it costs."
+    />
+    <ol class="steps" data-reveal-group>
+      {steps.map((s) => (
+        <li class="step">
+          <p class="n meta" aria-hidden="true">{s.n}</p>
+          <h3 class="t">{s.title}</h3>
+          <p class="d">{s.desc}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="more"><a class="btn btn-ghost" href="/process">How I work <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-8);
+  }
+
+  .step {
+    border-top: 2px solid var(--ink);
+    padding-top: var(--s-4);
+  }
+
+  .n {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-2);
+  }
+
+  .t {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0 0 var(--s-2);
+    font-weight: 400;
+  }
+
+  .d {
+    margin: 0;
+    color: var(--ink-60);
+  }
+
+  .more {
+    margin: var(--s-8) 0 0;
+  }
+
+  @media (min-width: 768px) {
+    .steps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

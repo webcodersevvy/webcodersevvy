@@ -1,0 +1,81 @@
+/* Shared index-row system — work lists on home + /work.
+   Imported as global CSS so Solid islands and static markup share it. */
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--ink);
+}
+
+.rows > li {
+  border-bottom: var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-4);
+  padding: var(--s-6) 0;
+  text-decoration: none;
+}
+
+a.row:hover .rtitle {
+  color: var(--accent-strong);
+}
+
+.idx {
+  color: var(--accent-strong);
+}
+
+.rt {
+  display: grid;
+  gap: var(--s-1);
+}
+
+.rtitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.rclient {
+  color: var(--ink-60);
+}
+
+.rtype,
+.ryear {
+  display: none;
+  color: var(--ink-60);
+}
+
+.arr {
+  color: var(--accent);
+  font-size: 1.25rem;
+}
+
+a.row:hover .arr {
+  transform: translateX(6px);
+}
+
+.arr {
+  transition: transform var(--dur-1) var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: 3rem 1fr auto auto 2rem;
+  }
+
+  .rtype,
+  .ryear {
+    display: block;
+  }
+
+  .rtitle {
+    font-size: 2rem;
+  }
+}

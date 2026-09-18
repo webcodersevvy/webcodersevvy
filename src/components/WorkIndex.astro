@@ -1,0 +1,48 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import SectionHeading from "./SectionHeading.astro";
+import "../styles/rows.css";
+
+type WorkEntry = CollectionEntry<"work">;
+const items: WorkEntry[] = (await getCollection("work", (entry: WorkEntry) => entry.data.status === "published")).slice(0, 4);
+const slugOf = (entry: WorkEntry) => entry.id.replace(/\.mdx?$/, "");
+---
+
+<section class="section rule-top" aria-labelledby="work-heading">
+  <div class="wrap">
+    <SectionHeading
+      index="01"
+      label="Selected Work"
+      title="Proof, not promises"
+      headingId="work-heading"
+      blurb="[Placeholder intro] A short index of representative engagements. Full case studies document challenge, approach, implementation, and verified outcomes."
+    />
+    {items.length === 0 ? (
+      <p class="meta">[Placeholder — published case studies]</p>
+    ) : (
+      <ul class="rows" data-reveal-group>
+        {items.map((p, i) => (
+          <li>
+            <a class="row" href={`/work/${slugOf(p)}`}>
+              <span class="idx meta" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <span class="rt">
+                <span class="rtitle">{p.data.title}</span>
+                <span class="rclient meta">{p.data.client}</span>
+              </span>
+              <span class="rtype meta">{p.data.projectType}</span>
+              <span class="ryear meta">{p.data.year}</span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    <p class="more"><a class="btn btn-ghost" href="/work">All work <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<style>
+  .more {
+    margin: var(--s-8) 0 0;
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+export interface Props {
+  index: string;
+  label: string;
+  title: string;
+  headingId: string;
+  blurb?: string;
+}
+
+const { index, label, title, headingId, blurb } = Astro.props;
+---
+
+<div class="shead" data-reveal>
+  <p class="meta sheyebrow"><span class="idx" aria-hidden="true">{index}</span><span aria-hidden="true"> — </span>{label}</p>
+  <h2 id={headingId} class="stitle">{title}</h2>
+  {blurb && <p class="sblurb">{blurb}</p>}
+</div>
+
+<style>
+  .shead {
+    margin-bottom: var(--s-8);
+  }
+
+  .sheyebrow {
+    margin: 0 0 var(--s-3);
+  }
+
+  .idx {
+    color: var(--accent-strong);
+  }
+
+  .stitle {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--h-2);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    margin: 0;
+    max-width: 20ch;
+  }
+
+  .sblurb {
+    margin: var(--s-4) 0 0;
+    max-width: 62ch;
+    color: var(--ink-60);
+    font-size: var(--lead);
+    line-height: 1.5;
+  }
+</style>

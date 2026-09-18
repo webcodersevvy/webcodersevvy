@@ -1,0 +1,79 @@
+---
+---
+
+<section class="cta" aria-labelledby="cta-heading">
+  <div class="wrap">
+    <p class="meta eyebrow"><span class="idx" aria-hidden="true">07</span><span aria-hidden="true"> — </span>Start a project</p>
+    <h2 id="cta-heading" class="font-display h" data-reveal>Have a store to build? Let’s talk.</h2>
+    <p class="sub">
+      [Placeholder] Tell me about your store, timeline, and goals. I reply to
+      every qualified inquiry personally.
+    </p>
+    <div class="row">
+      <a class="btn btn-red" href="/contact">Start a project <span aria-hidden="true">→</span></a>
+      <p class="meta mail">[Placeholder — contact email]</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--ink);
+    color: var(--bg);
+    padding-block: var(--s-16);
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--s-4);
+    color: var(--bg);
+  }
+
+  .idx {
+    color: var(--accent-strong);
+  }
+
+  .h {
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    margin: 0;
+    max-width: 14ch;
+  }
+
+  .sub {
+    max-width: 58ch;
+    margin: var(--s-6) 0 0;
+    color: rgba(244, 244, 244, 0.72);
+    font-size: var(--lead);
+    line-height: 1.5;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-6);
+    margin-top: var(--s-8);
+  }
+
+  .btn-red {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: #fff;
+  }
+
+  .btn-red:hover {
+    background: var(--bg);
+    border-color: var(--bg);
+    color: var(--ink);
+  }
+
+  .mail {
+    margin: 0;
+    color: rgba(244, 244, 244, 0.72);
+  }
+
+  @media (min-width: 1024px) {
+    .cta {
+      padding-block: var(--s-24);
+    }
+  }
+</style>

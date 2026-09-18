@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO(domain): point to final domain when purchased.
+Sitemap: https://webcodersevvy.com/sitemap-index.xml

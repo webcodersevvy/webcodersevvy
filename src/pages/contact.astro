@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import PageHeader from "../components/PageHeader.astro";
+import ContactForm from "../components/ContactForm.tsx";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Contact — webcodersevvy"
+  description="Start a project with Sevvy — Shopify, headless commerce, Webflow, Framer, and frontend inquiries, including white-label collaborations."
+  canonicalPath="/contact"
+>
+  <SiteNav />
+  <main id="main">
+    <PageHeader
+      eyebrow="Contact"
+      title="Start a project"
+      lead="Tell me about your store, timeline, and goals. Every qualified inquiry gets a personal reply."
+    />
+    <div class="wrap cgrid">
+      <div class="formcol">
+        <ContactForm client:load />
+      </div>
+      <aside class="aside" aria-label="Contact details">
+        <div class="ablock">
+          <p class="meta h">Direct</p>
+          <p class="big">[Placeholder — email]</p>
+          <p class="meta">[Placeholder — response time]</p>
+        </div>
+        <div class="ablock">
+          <p class="meta h">Elsewhere</p>
+          <ul>
+            <li><span class="meta">[Placeholder — GitHub]</span></li>
+            <li><span class="meta">[Placeholder — LinkedIn]</span></li>
+            <li><span class="meta">[Placeholder — X]</span></li>
+          </ul>
+        </div>
+        <div class="ablock">
+          <p class="meta h">Before you write</p>
+          <ul class="check2">
+            <li>What are you selling, and to whom?</li>
+            <li>What does success look like in numbers you trust?</li>
+            <li>Timeline and budget range — rough is fine.</li>
+            <li>Two sites you admire, and why.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .cgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-12);
+    padding-bottom: var(--s-16);
+  }
+
+  .aside {
+    display: grid;
+    gap: var(--s-8);
+    align-content: start;
+  }
+
+  .ablock {
+    border-top: 2px solid var(--ink);
+    padding-top: var(--s-4);
+  }
+
+  .h {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-3);
+  }
+
+  .big {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 var(--s-2);
+  }
+
+  .aside ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .aside li span {
+    color: var(--ink-60);
+  }
+
+  .check2 {
+    padding-left: 1.25rem !important;
+    list-style: disc !important;
+    color: var(--ink-60);
+  }
+
+  @media (min-width: 900px) {
+    .cgrid {
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
+</style>
+
+<style is:global>
+  .fnote {
+    color: var(--ink-60);
+    margin: 0 0 var(--s-6);
+  }
+
+  .fsum {
+    border: 2px solid var(--accent);
+    padding: var(--s-4) var(--s-6);
+    margin: 0 0 var(--s-6);
+  }
+
+  .fsum .meta {
+    color: var(--accent-strong);
+    margin: 0 0 var(--s-2);
+  }
+
+  .fsum ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .fsent {
+    border: 2px solid var(--ink);
+    padding: var(--s-8);
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .fsent .meta {
+    color: var(--accent-strong);
+    margin: 0;
+  }
+
+  .fsent p {
+    margin: 0;
+  }
+
+  .fgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  @media (min-width: 700px) {
+    .fgrid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .field {
+    display: grid;
+    gap: var(--s-2);
+    margin-bottom: var(--s-4);
+  }
+
+  .field label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font: inherit;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 0;
+    padding: 0.7rem 0.9rem;
+    width: 100%;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  .field input:hover,
+  .field select:hover,
+  .field textarea:hover {
+    border-color: var(--ink);
+  }
+
+  .field [aria-invalid="true"] {
+    border-color: var(--accent-strong);
+    border-width: 2px;
+  }
+
+  .ferr {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-strong);
+    margin: 0;
+  }
+
+  .fhint {
+    font-size: 0.85rem;
+    color: var(--ink-60);
+    margin: 0;
+  }
+
+  .check {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin: var(--s-2) 0 var(--s-6);
+  }
+
+  .check input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--accent-strong);
+  }
+</style>

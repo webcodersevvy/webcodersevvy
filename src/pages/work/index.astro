@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import WorkFilter, { type WorkListEntry } from "../../components/WorkFilter.tsx";
+import CTA from "../../components/CTA.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import "../../styles/rows.css";
+
+type WorkEntry = CollectionEntry<"work">;
+const items: WorkEntry[] = await getCollection("work", (entry: WorkEntry) => entry.data.status === "published");
+const slugOf = (e: WorkEntry) => e.id.replace(/\.mdx?$/, "");
+const entries: WorkListEntry[] = items.map((e) => ({
+  slug: slugOf(e),
+  title: e.data.title,
+  client: e.data.client,
+  type: e.data.projectType,
+  year: e.data.year,
+}));
+const types = [...new Set(entries.map((e) => e.type))];
+---
+
+<BaseLayout
+  title="Work — webcodersevvy"
+  description="Selected Shopify, headless commerce, and frontend work by Sevvy (Sewak Singh). Case studies with challenge, approach, implementation, and verified outcomes."
+  canonicalPath="/work"
+>
+  <SiteNav />
+  <main id="main">
+    <PageHeader
+      eyebrow="Work — index"
+      title="Selected work"
+      lead="Representative engagements with full case studies. Outcomes are documented only where verified — never invented."
+    />
+    <div class="wrap findex">
+      <WorkFilter client:load entries={entries} types={types} />
+      <noscript>
+        <ul class="rows">
+          {entries.map((p, i) => (
+            <li>
+              <a class="row" href={`/work/${p.slug}`}>
+                <span class="idx meta" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <span class="rt">
+                  <span class="rtitle">{p.title}</span>
+                  <span class="rclient meta">{p.client}</span>
+                </span>
+                <span class="rtype meta">{p.type}</span>
+                <span class="ryear meta">{p.year}</span>
+                <span class="arr" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </noscript>
+    </div>
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .findex {
+    padding-bottom: var(--s-16);
+  }
+</style>
+
+<style is:global>
+  .fbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-bottom: var(--s-4);
+  }
+
+  .fbtn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 1rem;
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  .fbtn:hover {
+    border-color: var(--ink);
+  }
+
+  .fbtn.on {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  .fcount {
+    color: var(--ink-60);
+    margin: 0 0 var(--s-4);
+  }
+</style>

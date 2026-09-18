@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import Hero from "../components/Hero.astro";
+import WorkIndex from "../components/WorkIndex.astro";
+import ServicesList from "../components/ServicesList.astro";
+import Capabilities from "../components/Capabilities.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import AboutTeaser from "../components/AboutTeaser.astro";
+import Testimonials from "../components/Testimonials.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import JsonLd from "../components/JsonLd.astro";
+
+// TODO(domain): URL is a placeholder until the domain is purchased.
+const org = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "webcodersevvy",
+  description:
+    "Freelance web design and development specializing in Shopify, headless commerce, Webflow, Framer, and performance optimization.",
+  url: "https://webcodersevvy.com/",
+  founder: {
+    "@type": "Person",
+    name: "Sewak Singh",
+    alternateName: "Sevvy",
+    jobTitle: "Freelance Web Designer & Developer",
+  },
+  knowsAbout: [
+    "Shopify",
+    "Shopify Theme Development",
+    "Headless Commerce",
+    "Storefront APIs",
+    "Webflow",
+    "Framer",
+    "Frontend Development",
+    "Interaction Design",
+    "Performance Optimization",
+  ],
+};
+---
+
+<BaseLayout
+  title="webcodersevvy — Sevvy · Shopify & Headless Commerce Designer-Developer"
+  description="Sevvy (Sewak Singh) — freelance web designer and developer specializing in Shopify theme development, headless commerce, Webflow, Framer, and performance optimization."
+  canonicalPath="/"
+>
+  <JsonLd data={org} />
+  <SiteNav />
+  <main id="main">
+    <Hero />
+    <WorkIndex />
+    <ServicesList />
+    <Capabilities />
+    <ProcessSteps />
+    <AboutTeaser />
+    <Testimonials />
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>

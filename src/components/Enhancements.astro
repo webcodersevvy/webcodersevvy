@@ -1,0 +1,81 @@
+---
+// Site-wide progressive enhancement. Zero static dependencies: reveals use the
+// Web Animations API + IntersectionObserver (same easing as the token system).
+// Dynamic import on idle: Lenis (desktop fine-pointer only).
+// Everything gated on prefers-reduced-motion. No-JS users see full content.
+// NOTE(perf): GSAP and Motion are installed for future scroll choreography
+// (work imagery, page transitions) once real assets exist. They are
+// intentionally NOT bundled in v1 — the platform covers current reveal needs
+// at ~0KB, per priority order (performance over animation complexity).
+---
+
+<script>
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reduced) {
+    document.documentElement.classList.add("fx");
+    const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+    const show = (els: Element[], lift: string, duration: number, gap: number) => {
+      els.forEach((el, i) => {
+        const target = el as HTMLElement;
+        const anim = target.animate(
+          [
+            { opacity: "0", transform: `translateY(${lift})` },
+            { opacity: "1", transform: "none" },
+          ],
+          { duration, easing: EASE, delay: i * gap, fill: "backwards" },
+        );
+        anim.finished
+          .then(() => {
+            target.style.opacity = "1";
+            target.style.transform = "none";
+          })
+          .catch(() => {});
+      });
+    };
+
+    // Hero: above the fold, staggered on load.
+    const hero = Array.from(document.querySelectorAll("[data-hero]"));
+    if (hero.length > 0) show(hero, "14px", 800, 90);
+
+    // Scroll reveals: singles + staggered groups.
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          io.unobserve(el);
+          if (el.hasAttribute("data-reveal-group")) {
+            show(Array.from(el.children), "22px", 600, 60);
+          } else {
+            show([el], "22px", 700, 0);
+          }
+        }
+      },
+      { threshold: 0.15 },
+    );
+    document.querySelectorAll("[data-reveal], [data-reveal-group]").forEach((el) => io.observe(el));
+
+    // Lenis: enhancement only — idle, fine pointers, never render-blocking.
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const boot = () => {
+        import("lenis")
+          .then(({ default: Lenis }) => {
+            const lenis = new Lenis({ anchors: true });
+            const raf = (time: number) => {
+              lenis.raf(time);
+              requestAnimationFrame(raf);
+            };
+            requestAnimationFrame(raf);
+          })
+          .catch(() => {});
+      };
+      const w = window as unknown as {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void;
+      };
+      if (w.requestIdleCallback) w.requestIdleCallback(boot, { timeout: 2500 });
+      else window.setTimeout(boot, 1200);
+    }
+  }
+</script>

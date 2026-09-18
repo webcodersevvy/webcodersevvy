@@ -1,0 +1,47 @@
+---
+export interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<div class="wrap phead">
+  <p class="meta eyebrow">{eyebrow}</p>
+  <h1 id="page-title" class="font-display h">{title}</h1>
+  {lead && <p class="lead">{lead}</p>}
+</div>
+
+<style>
+  .phead {
+    padding-top: var(--s-12);
+    padding-bottom: var(--s-8);
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--s-4);
+    color: var(--accent-strong);
+  }
+
+  .h {
+    font-size: var(--h-1);
+    margin: 0;
+    max-width: 16ch;
+  }
+
+  .lead {
+    font-size: var(--lead);
+    line-height: 1.5;
+    color: var(--ink-60);
+    max-width: 62ch;
+    margin: var(--s-6) 0 0;
+  }
+
+  @media (min-width: 1024px) {
+    .phead {
+      padding-top: var(--s-16);
+    }
+  }
+</style>
