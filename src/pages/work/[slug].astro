@@ -27,8 +27,8 @@ const prev = at > 0 ? all[at - 1] : undefined;
 const next = at >= 0 && at < all.length - 1 ? all[at + 1] : undefined;
 const slugOf = (e: WorkEntry) => e.id.replace(/\.mdx?$/, "");
 
-// TODO(domain): URL is a placeholder until the domain is purchased.
-const SITE = "https://webcodersevvy.com";
+// Deployment canonical — replace with custom domain when purchased.
+const SITE = "https://webcodersevvy.vercel.app";
 const pageUrl = `${SITE}/work/${slug}/`;
 const structured = [
   {

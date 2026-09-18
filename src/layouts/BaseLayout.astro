@@ -19,8 +19,8 @@ const {
   noindex = false,
 } = Astro.props;
 
-// TODO(domain): replace with final domain when purchased.
-const SITE = Astro.site?.toString().replace(/\/$/, "") ?? "https://webcodersevvy.com";
+// Deployment canonical — replace with custom domain when purchased.
+const SITE = Astro.site?.toString().replace(/\/$/, "") ?? "https://webcodersevvy.vercel.app";
 const canonical = new URL(canonicalPath, SITE + "/").toString();
 ---
 
