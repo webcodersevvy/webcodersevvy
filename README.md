@@ -1,95 +1,135 @@
-# webcodersevvy — Portfolio
+# SEWAK SINGH
 
-Premium personal portfolio for **Sewak Singh ("Sevvy")**, freelance web designer
-& developer specializing in Shopify, headless commerce, Webflow, Framer,
-frontend development, and performance optimization.
+### `SEVVY` — Shopify Partner · Designer · Developer
 
-- **Brand:** Technical + Creative — monochrome, editorial, architectural,
-  typography-driven. Background `#F4F4F4`, ink `#000000`, Hot Red `#FF0000`
-  (selective) with functional derivative `--accent-strong: #B30000` for
-  WCAG AA small text (pure red on paper is 3.6:1 — graphics/large-type only).
-- **Primary conversion:** project inquiry (`/contact`).
-- **Status:** All content currently ships as explicit `[Placeholder]` shells —
-  no fabricated clients, metrics, testimonials, or credentials (spec §20).
+**Crafting refined Shopify storefronts through thoughtful design and custom development.**
 
-## Stack
+I work at the intersection of **e-commerce design, Shopify development, and frontend engineering** — helping brands and creative teams turn ideas into polished digital shopping experiences.
 
-| Layer    | Choice                                              |
-| -------- | --------------------------------------------------- |
-| Site     | Astro 7 (static output), TypeScript (strict)        |
-| Islands  | Solid.js (`MobileMenu`, `WorkFilter`, `ContactForm`)|
-| State    | Nanostores · Validation Zod (content + forms)       |
-| Motion   | WAAPI + IntersectionObserver, Lenis (idle, desktop) |
-| Reserved | GSAP + Motion installed, intentionally unbundled    |
-| Styling  | Vanilla CSS + design tokens (`src/styles/`)         |
-| Fonts    | Melodrama via Astro Fonts API (Fontshare, OFL)      |
-| Body/Mono| Mona Sans + Space Mono via Fontsource (self-hosted) |
-| Content  | Astro content collections (Markdown + Zod schema)   |
-| SEO      | Sitemap, robots, canonical, OG, JSON-LD             |
 
-Client JS budget: **< 50KB** — currently ~2.5KB static/page, islands hydrate
-on demand, Lenis loads idle + fine-pointer only.
 
-## Project structure
 
-```
-astro.config.mjs          # site, integrations, Fonts API (Melodrama)
-src/
-  components/             # Astro static components + Solid islands (.tsx)
-  content/work/           # 12 case studies (01–12, Markdown + Zod frontmatter)
-  content.config.ts       # work schema (glob loader)
-  data/services.ts        # single source for services (home + /services)
-  layouts/BaseLayout.astro# head, SEO/OG, <Font>, Enhancements
-  lib/validation.ts       # inquirySchema (Zod source of truth)
-  pages/                  # /, /work, /work/[slug], /services, /about,
-                          # /process, /contact, /404
-  stores/ui.ts            # Nanostores (mobile menu)
-  styles/                 # tokens.css, global.css, rows.css
-public/
-  images/work/            # 24 Pexels photos (build-time, credited in captions)
-  robots.txt, favicon.svg, og-default.png
-scripts/
-  make-og.mjs + og-image.svg  # OG image generator (sharp): node scripts/make-og.mjs
-```
+---
 
-## Case-study schema
+## ✳ ABOUT ME
 
-`client, projectType, services[], stack[], year, role, featured, status,
-description, deliverables[], evidence[{image, alt, caption}], placeholderNotes`.
-Pages render challenge → approach → design → technology → implementation →
-outcome, visual evidence figures, and prev/next navigation.
+I'm **Sewak Singh**, known as **Sevvy** — an independent Shopify Partner, designer, and developer specializing in modern e-commerce storefronts.
 
-## Scripts
+My focus is building storefronts that bring together:
 
-| Command               | Purpose                                  |
-| --------------------- | ---------------------------------------- |
-| `npm run dev`         | local dev server                         |
-| `npm run check`       | `astro check` (must be 0 errors)         |
-| `npm run build`       | static build to `dist/` (19 pages)       |
-| `npm run preview`     | preview production build                 |
-| `node scripts/make-og.mjs` | regenerate `public/og-default.png` |
+- **Visual excellence** — clean layouts, thoughtful typography, and brand-focused interfaces.
+- **Custom development** — flexible Shopify sections, Liquid components, and tailored templates.
+- **Better experiences** — responsive layouts, intuitive interactions, and usability-focused implementation.
+- **Technical quality** — maintainable code, performance awareness, and scalable storefront architecture.
 
-## Accessibility / performance / SEO
+I also enjoy collaborating with **creative agencies, branding studios, UI/UX designers, and independent professionals** who need Shopify development support.
 
-- WCAG 2.2 AA target: landmarks, skip link, `:focus-visible` ring,
-  `aria-current`, menu focus trap + focus return, validated form with
-  `role="alert"` errors, 44px targets, `prefers-reduced-motion` kills all
-  motion (CSS + JS gate; `html.fx` set only when animating).
-- Images lazy + `async` decode, 16/9 CLS-safe cropping, self-hosted
-  subset fonts with `swap` and metric-matched fallbacks.
-- Per-route titles/descriptions/canonicals, OG/Twitter cards, JSON-LD
-  (`ProfessionalService` home; `CreativeWork` + `BreadcrumbList` cases).
+> Good storefronts aren't just visually appealing. They're thoughtfully designed, carefully engineered, and built around the customer experience.
 
-## TODO (needs owner input)
+---
 
-Domain purchase (`TODO(domain)` x N) · contact email + form handler
-(`TODO(forms)` — currently validated `mailto:` draft) · real projects,
-screenshots, testimonials, bio/photo, availability, socials · Adobe Fonts
-fully removed in favor of Melodrama.
+## ✦ WHAT I DO
 
-## Acceptance
+### 01 — SHOPIFY DESIGN & DEVELOPMENT
 
-`astro check` clean, `astro build` 19 pages, `accept.py` (temp tooling, not
-committed): 0 failures — routes, links, meta/OG/JSON-LD, one-H1, contrast
-pairs (all ≥ AA), JS budgets. Browser click/keyboard/Lighthouse pass still
-recommended on first deploy. Deploys anywhere static: `dist/`.
+| Service                    | What I can help with                                       |
+| :------------------------- | :--------------------------------------------------------- |
+| Storefront Design          | Brand-focused e-commerce interfaces and storefront layouts |
+| Custom Theme Development   | Shopify Liquid, JSON templates, sections, and blocks       |
+| Theme Customization        | Extending and adapting existing Shopify themes             |
+| Figma to Shopify           | Translating interface designs into functional storefronts  |
+| Product & Collection Pages | Custom templates and merchandising layouts                 |
+| Responsive Development     | Consistent experiences across desktop and mobile           |
+| Storefront Optimization    | Performance, accessibility, and usability improvements     |
+| Shopify Integrations       | APIs, metafields, metaobjects, and structured store data   |
+
+### 02 — FRONTEND & CREATIVE DEVELOPMENT
+
+Beyond Shopify, I work with modern frontend technologies to build:
+
+- Interactive web interfaces.
+- Motion-enhanced digital experiences.
+- Responsive marketing websites.
+- CMS-integrated websites.
+- Modern frontend applications.
+
+---
+
+## ⚙ TECHNOLOGY STACK
+
+**SHOPIFY ECOSYSTEM**
+
+`Shopify CLI` · `Liquid` · `JSON Templates` · `Sections & Blocks` · `Metafields` · `Metaobjects` · `Storefront API`
+
+
+**FRONTEND DEVELOPMENT**
+
+`HTML` · `CSS` · `JavaScript` · `TypeScript` · `React` · `Astro` · `Next.js`
+
+
+**DESIGN, STYLING & MOTION**
+
+`Tailwind CSS` · `Vanilla CSS` · `GSAP` · `Motion` · `Lenis`
+
+
+**DEVELOPMENT TOOLS**
+
+`Git` · `GitHub` · `npm` · `VS Code` · `Zod`
+
+---
+
+## ↗ AGENCY & STUDIO COLLABORATIONS
+
+**Your design. My development. One seamless workflow.**
+
+I’m interested in working alongside teams that need dedicated Shopify design and development support.
+
+**Potential collaboration partners:**
+
+- Branding and identity studios.
+- UI/UX and product designers.
+- Creative and digital agencies.
+- Shopify development agencies.
+- Independent designers and e-commerce consultants.
+
+**Development support:**
+
+| Area                      | Collaboration                                 |
+| :------------------------ | :-------------------------------------------- |
+| Shopify Theme Development | Custom sections, blocks, and templates        |
+| Design Implementation     | Figma-to-Shopify development                  |
+| Theme Customization       | Existing theme modifications and improvements |
+| Storefront Development    | Responsive storefront implementation          |
+| Development Partnerships  | Project-based and white-label collaboration   |
+| Ongoing Development       | Iterations, improvements, and maintenance     |
+
+I value clear communication, well-structured code, attention to detail, and a collaborative approach to getting projects delivered.
+
+---
+
+## ◈ HOW I APPROACH DEVELOPMENT
+
+| Principle             | My Approach                                                        |
+| :-------------------- | :----------------------------------------------------------------- |
+| Design-led            | Development should preserve and enhance the intended design.       |
+| Reusable              | Build flexible components instead of repetitive code.              |
+| Performance-conscious | Keep implementations efficient and avoid unnecessary dependencies. |
+| Responsive            | Design and develop for real-world devices and screen sizes.        |
+| Accessible            | Consider semantic structure and accessible interactions.           |
+| Maintainable          | Write code that's understandable and easier to extend.             |
+
+---
+
+## LET'S BUILD SOMETHING EXCEPTIONAL.
+
+Have a Shopify project? Need an extra development hand? Interested in collaborating?
+
+**Let's connect.**
+
+
+
+[Portfolio](https://mille.framer.website) · [Instagram](https://www.instagram.com/webcodersevvy/) · [GitHub](https://github.com/webcodersevvy)
+
+---
+
+SEVVY — Shopify Design & Development
